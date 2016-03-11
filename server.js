@@ -15,3 +15,19 @@ app.get('/', function(req, res){
 var server = app.listen(2222, function(){
 	console.log("Listening at port: 2222"); 
 }); 
+
+var io = require("socket.io").listen(server);
+var messages = []; 
+io.sockets.on('connection', function(socket){
+	socket.on("new_message", function(data){
+		var new_message = {
+			name: data.user, 
+			message: data.message
+		}
+		messages.push(new_message); 
+		io.emit("updated", {messages: messages}); 
+	});
+	socket.on("update", function(){
+		socket.emit("updated", {messages: messages}); 
+	});  
+}); 

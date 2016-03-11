@@ -14,27 +14,20 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script type="text/javascript" src='/socket.io/socket.io/js'></script>
-		<!-- Temporary inline styles to be added to static folder  -->
-		<style type="text/css">
-			.container {
-				max-width: 960px; 
-
-			}
-		</style>
-		<script type="text/javascript">
-		</script>
+		<script type="text/javascript" src='/socket.io/socket.io.js'></script>
+		<!-- javascript -->
+		<script type="text/javascript" src='javascript.js'></script>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<div class="container">
-			<h2 class="col-xs-12">
-			</h2>
 			<div class="col-xs-12">
+				<label class='heading'>Conversation Board</label>
+				<div class="col-xs-12 board"></div>
+				<textarea class='form-control' id='textarea' placeholder="Enter your message here"></textarea>
+				<button class='btn col-xs-1 col-xs-offset-11'>Send</button>
 			</div>
-			<div class="col-xs-12">
-				<textarea>
-				</textarea>
-			</div>
-		</div> <!-- End Container -->
+		</div> <!-- End of container --> 
 	</body> 
 </html>
