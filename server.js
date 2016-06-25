@@ -1,5 +1,6 @@
 var express = require('express'); 
 var path = require('path');
+var session = require('express-session');
 var app = express(); 
 
 // set static, views and veiw engine
