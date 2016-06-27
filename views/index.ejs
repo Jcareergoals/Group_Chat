@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Group Chat</title>
+		<title>Jose's Chatroom</title>
 		<meta charset="UTF-8">
-		<!-- jQuery library -->
+		<!-- SEO -->
+		<meta name="description" content="Welcome to Jose's Chatroom where you can instant message with any of your friends.">
+		<meta name="keywords" content="chatroom, fort myers chat room, jose chery, full stack web developer, free online chat room">
+		<meta name="author" content="Jose Chery">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- jQuery CDN Library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" 
-		integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- Socket CDN -->
 		<script type="text/javascript" src='/socket.io/socket.io.js'></script>
 		<!-- javascript -->
 		<script type="text/javascript" src='javascript.js'></script>
@@ -21,13 +24,21 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"> 
 			<div class="col-xs-12">
-				<label class='heading'>Conversation Board</label>
-				<div class="col-xs-12 board"></div>
-				<textarea class='form-control' id='textarea' placeholder="Enter your message here"></textarea>
-				<button class='btn col-xs-1 col-xs-offset-11'>Send</button>
+				<h1>Welcome to Jose's Chatroom</h1>
+				<!-- Chatbox Section -->
+				<div class="col-xs-12 chatbox">
+					<span id='online'></span>
+				</div>
+				<!-- Chat Box Form Section -->
+				<form action="" method="post">
+					<textarea id="textarea" class='form-control' placeholder="Write a message here" autofocus></textarea>
+					<button type='submit' class='btn btn-success'>Send</button>
+				</form>
 			</div>
 		</div> <!-- End of container --> 
+		<!-- Copy Right Section -->
+		<div class="col-xs-12 copyright">Copyright &copy; 2016 <a href="https://www.linkedin.com/in/jose-chery-763110a1" target="_blank">Jose Chery</a>. All rights reserved.</div>
 	</body> 
 </html>
