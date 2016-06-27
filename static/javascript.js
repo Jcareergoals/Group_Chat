@@ -1,26 +1,46 @@
 $(document).ready(function(){
-	var name = prompt("YOUR NAME: "); 
-	var socket = io.connect(); 
-	if(name){
-		socket.emit("new_user", {name: name}); 
-	}
-	socket.emit('update'); 
-	$('.btn').click(function(){
-		var message = $('textarea').val(); 
-		if(name == null || name == 'undefined'){
-			name = prompt("Your name is required to send a message.\nPlease enter a name:"); 
-		} else {
-			socket.emit("new_message", {message: message, user: name}); 
-			$('#textarea').empty(); 
+	var name;
+	var socket = io.connect();   
+	$('form').submit(function(){
+		while(!name || name == "undefined"){
+			name = prompt("What is your name?");
 		}
+		$('h1').html("<h1 class='logged'>Welcome "+name+"</h1>");
+		socket.emit("new_user", {name: name});
+		if($('textarea').length > 0){
+			var message = $('textarea').val();
+			$('textarea').text("");
+			var d = new Date();
+			var time = d.toLocaleTimeString(); 
+			socket.emit("new_message", {name: name, message: message, updatedAt: time}); 
+		}
+		return false; 
 	}); 
-	socket.on("updated", function(data){
-		// text that will go into conversation board
-		var messages = '';  
-		for(var i = 0; i < data.messages.length; i++){
-			messages+= "<p class='name'>"+data.messages[i].name+"</p>";
-			messages+= "<p class='message'>"+data.messages[i].message+"</p><br>"; 
+	// New user event
+	socket.on("newUserBroadcast", function(data){
+		$('.chatbox').append("<p class='green'>"+data.name+" entered the chatroom.</p>");
+	});
+	// New message event
+	socket.on("new_message_update", function(data){
+		$('.chatbox').append("<p><b class='green'>"+data.name+"</b>: "+data.message+" | "+data.updatedAt+"</p>"); 
+	});
+	// Greeting new user event
+	socket.on("welcome", function(data){
+		$('.chatbox').append("<p>Welcome to the chatroom <b class='green'>"+data.name+"</b></p>");
+	}); 
+	socket.on("online", function(data){
+		if(data.online == 1){
+			$('#online').html("<p><b class='red'>"+data.online+"</b> USER ONLINE</p>");
+		} else if (data.online >= 2 && data.online < 5){
+			$('#online').html("<p><b class='orange'>"+data.online+"</b> USERS ONLINE</p>");
+		} else if (data.online >= 5 && data.online < 7){
+			$('#online').html("<p><b class='chartreuse'>"+data.online+"</b> USERS ONLINE</p>");
+		} else if (data.online >= 7){
+			$('#online').html("<p><b class='green'>6+</b> USERS ONLINE</p>");
 		}
-		$('.board').html(messages); 
-	}); 		
+		console.log(data);
+	});		
+	socket.on("disconnected", function(data){
+		$('.chatbox').append("<p class='red'>A user left the chatroom</p>");
+	});
 });
