@@ -20,7 +20,6 @@ var server = app.listen(3000, function(){
 
 var io = require("socket.io").listen(server);
 
-
 io.sockets.on('connection', function(socket){
 	socket.on("new_message", function(data){
 		io.emit("new_message_update", data);
