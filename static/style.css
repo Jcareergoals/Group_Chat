@@ -3,7 +3,7 @@
 	padding: 0px; 
 }
 body { 
-	background: url("img/background.JPG") fixed no-repeat center center;
+	background: url("img/background.jpg") fixed no-repeat center center;
 	-webkit-background-size: cover;  
 	-moz-background-size: cover; 
 	-o-background-size: cover; 

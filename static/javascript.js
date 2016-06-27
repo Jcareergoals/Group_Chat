@@ -14,7 +14,6 @@ $(document).ready(function(){
 			var time = d.toLocaleTimeString(); 
 			socket.emit("new_message", {name: name, message: message, updatedAt: time}); 
 		}
-		
 		$('textarea').text("");
 		return false; 
 	}); 
