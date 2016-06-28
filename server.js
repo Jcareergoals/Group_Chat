@@ -21,18 +21,23 @@ var server = app.listen(3000, function(){
 var io = require("socket.io").listen(server);
 
 io.sockets.on('connection', function(socket){
+	var users = {};
 	socket.on("new_message", function(data){
 		io.emit("new_message_update", data);
 	});
 	socket.on("new_user", function(data){
+		users[socket.id] = data.name; 
 		socket.emit("welcome", data);
 		online += 1;   
 		io.emit("online", {online: online}); 
 		socket.broadcast.emit("newUserBroadcast", data);
 	}); 
-	socket.on('disconnect', function(data){
-		online -= 1; 
-		if(online < 0){online = 0;}
-		io.emit("disconnected", {online: online});
+	socket.on('disconnect', function(){
+		var name = users[socket.id];
+		online -= 1;
+		if(online < 0){online = 0};
+		io.emit('disconnected', {name:name});
+		io.emit('online', {online:online});
+		delete users[socket.id];
 	});
 }); 

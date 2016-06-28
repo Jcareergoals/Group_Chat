@@ -44,6 +44,6 @@ $(document).ready(function(){
 		}
 	});		
 	socket.on("disconnected", function(data){
-		$('.chatbox').append("<p class='red'>A user left the chatroom</p>");
+		$('.chatbox').append("<p class='red'>"+data.name+" left the chatroom</p>");
 	});
 });
